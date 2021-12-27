@@ -16,7 +16,7 @@ var Configuration Configurations
 
 func ImportConfig() {
 	viper.SetConfigName("config.yml")
-	viper.AddConfigPath("./config/")
+	viper.AddConfigPath("../config/")
 	viper.AutomaticEnv()
 	viper.SetConfigType("yml")
 
