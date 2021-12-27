@@ -1,25 +1,29 @@
 package main
 
 import (
-	"log"
-
-	"github.com/cebbaker/roscontroller/actions"
+	log "github.com/sirupsen/logrus"
 
 	"github.com/aler9/goroslib"
+	"github.com/cebbaker/roscontroller/actions"
+	"github.com/cebbaker/roscontroller/config"
 )
 
 func main() {
 	// create a node and connect to the master
+	config.ImportConfig()
+
 	lNode, err := goroslib.NewNode(goroslib.NodeConf{
-		Name:          "Right_Servo_Controller",
-		MasterAddress: "ceb-All-Series:11311",
+		Name:          config.Configuration.ROSNodeName,
+		MasterAddress: config.Configuration.MasterROSAddress,
 	})
 	if err != nil {
+		log.WithFields(log.Fields{"Name": config.Configuration.ROSNodeName,
+			"MasterAddress": config.Configuration.MasterROSAddress,
+			"Error":         err.Error()}).Panicln("Cannot Create a New Node.")
 		panic(err)
 	}
 	defer lNode.Close()
-	lNode.Log(goroslib.LogLevelInfo, "Created New Node")
-	log.Println("Created New Node")
-	actions.RegisterConsumers(lNode)
+	lNode.Log(goroslib.LogLevelInfo, "Created New Node"+config.Configuration.ROSNodeName)
 
+	actions.RegisterConsumers(lNode)
 }
