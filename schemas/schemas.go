@@ -22,3 +22,22 @@ type ServoAction struct {
 	ExtentionFinal
 	ExtentionFeedBack
 }
+
+type ServoConfig struct {
+	Name     string
+	Min      int
+	Max      int
+	Rest     int
+	ServoNbr int
+}
+
+type ServoState struct {
+	CurrentPointer int
+}
+
+type ServoS struct {
+	Config  ServoConfig
+	Pointer ServoState
+}
+
+const RIGHT_UPPER_BICEP = "rub"

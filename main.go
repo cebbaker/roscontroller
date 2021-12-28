@@ -10,7 +10,7 @@ import (
 
 func main() {
 	// create a node and connect to the master
-	config.ImportConfig()
+	config.ImportConfig(false)
 
 	lNode, err := goroslib.NewNode(goroslib.NodeConf{
 		Name:          config.Configuration.ROSNodeName,
@@ -25,5 +25,5 @@ func main() {
 	defer lNode.Close()
 	lNode.Log(goroslib.LogLevelInfo, "Created New Node"+config.Configuration.ROSNodeName)
 
-	actions.RegisterConsumers(lNode)
+	actions.InitAllActions(lNode)
 }

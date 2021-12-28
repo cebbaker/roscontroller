@@ -15,7 +15,7 @@ import (
 
 func main() {
 	// create a node and connect to the master
-	config.ImportConfig()
+	config.ImportConfig(true)
 	n, err := goroslib.NewNode(goroslib.NodeConf{
 		Name:          "test_Node",
 		MasterAddress: config.Configuration.MasterROSAddress,
