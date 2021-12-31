@@ -28,7 +28,7 @@ func main() {
 	// create a simple action client
 	sac, err := goroslib.NewSimpleActionClient(goroslib.SimpleActionClientConf{
 		Node:   n,
-		Name:   "Servo0",
+		Name:   "rarm",
 		Action: &schemas.ServoAction{},
 	})
 	if err != nil {
@@ -44,6 +44,7 @@ func main() {
 	// send a goal
 	err = sac.SendGoal(goroslib.SimpleActionClientGoalConf{
 		Goal: &schemas.ExtentionAmount{
+			Servo: schemas.SERVO_UPPER_BICEP,
 			Input: 60,
 		},
 		OnDone: func(state goroslib.SimpleActionClientGoalState, res *schemas.ExtentionFinal) {

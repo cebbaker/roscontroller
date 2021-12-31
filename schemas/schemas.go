@@ -5,6 +5,7 @@ import (
 )
 
 type ExtentionAmount struct {
+	Servo string
 	Input uint32
 }
 
@@ -40,4 +41,7 @@ type ServoS struct {
 	Pointer ServoState
 }
 
-const RIGHT_UPPER_BICEP = "rub"
+const RIGHT_ARM = "rarm"
+
+const SERVO_UPPER_BICEP = "sub"
+const SERVO_ELBO = "seb"

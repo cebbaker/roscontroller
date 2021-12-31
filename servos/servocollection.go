@@ -9,7 +9,11 @@ var Servos = map[string]schemas.ServoS{}
 
 func Init() {
 	lServo := schemas.ServoS{
-		Config:  schemas.ServoConfig{Name: schemas.RIGHT_UPPER_BICEP, Min: 60, Max: 110, Rest: 85, ServoNbr: 0},
+		Config:  schemas.ServoConfig{Name: schemas.SERVO_UPPER_BICEP, Min: 60, Max: 110, Rest: 85, ServoNbr: 0},
+		Pointer: schemas.ServoState{CurrentPointer: 0}}
+	CreateServo(lServo)
+	lServo = schemas.ServoS{
+		Config:  schemas.ServoConfig{Name: schemas.SERVO_ELBO, Min: 60, Max: 110, Rest: 85, ServoNbr: 1},
 		Pointer: schemas.ServoState{CurrentPointer: 0}}
 	CreateServo(lServo)
 }
